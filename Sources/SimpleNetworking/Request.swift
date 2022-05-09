@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 public protocol Request {
     associatedtype Output
@@ -24,6 +23,9 @@ extension Request where Output: Decodable {
     }
 }
 
+#if !os(macOS)
+import UIKit
+
 extension Request where Output: UIImage {
     public func decode(_ data: Data) throws -> UIImage {
         guard let image = UIImage(data: data) else {
@@ -32,3 +34,4 @@ extension Request where Output: UIImage {
         return image
     }
 }
+#endif
