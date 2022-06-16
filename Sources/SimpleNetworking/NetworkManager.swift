@@ -59,6 +59,7 @@ public final class NetworkManager: Networking {
     private func makeRequest<R: Request>(request: R) -> URLRequest {
         var urlRequest = URLRequest(request: request)
         urlRequest.allHTTPHeaderFields = delegate?.headers(for: self)
+        urlRequest.httpBody = delegate?.httpBody(for: self)
         return urlRequest
     }
 }
