@@ -50,7 +50,7 @@ public final class NetworkManager: Networking {
     @available(macOS 12.0.0, *)
     public func fetch<R: Request>(request: R) async throws -> R.Output {
         let urlRequest = makeRequest(request: request)
-        let (data, _) = try await urlSession.data(for: urlRequest, delegate: nil)
+        let (data, response) = try await urlSession.data(for: urlRequest, delegate: nil)
         return try request.decode(data)
     }
     
